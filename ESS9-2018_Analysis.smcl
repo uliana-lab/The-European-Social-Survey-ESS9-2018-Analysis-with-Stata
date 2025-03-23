@@ -1,0 +1,211 @@
+{smcl}
+{com}{sf}{ul off}{txt}
+{com}. use "C:\Users\Kalinina_Uliana\Downloads\ESS9-2018.dta"
+{txt}
+{com}. 
+. *filtering so that only data for Great Britain would be shown
+. keep if cntry=="GB"
+{txt}(0 observations deleted)
+
+{com}. 
+. *two categorical variables that I chose are 'gender' and 'had a paid job'; the quantitative variable is 'number of children'
+. codebook gndr pdjobev nbthcld
+
+{txt}{hline}
+{res}gndr{right:Gender}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}byte{txt})
+{ralign 22:Label}: {res:gndr}
+
+{col 18}Range: [{res}1{txt},{res}2{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}2,204
+
+{txt}{col 13}Tabulation: Freq.   Numeric  Label
+{col 20}{res}       998{col 32}       1{col 42}{txt}Male
+{col 20}{res}     1,206{col 32}       2{col 42}{txt}Female
+
+{txt}{hline}
+{res}pdjobev{right:Ever had a paid job}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}byte{txt})
+{ralign 22:Label}: {res:pdjobev}
+
+{col 18}Range: [{res}1{txt},{res}2{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}2,204
+{col 8}{txt}Unique mv codes: {res}1{col 50}{txt}Missing .*: {res}1,256{txt}/{res}2,204
+
+{txt}{col 13}Tabulation: Freq.   Numeric  Label
+{col 20}{res}       873{col 32}       1{col 42}{txt}Yes
+{col 20}{res}        75{col 32}       2{col 42}{txt}No
+{col 20}{res}     1,256{col 32}      .a{col 42}{txt}Not applicable
+
+{txt}{hline}
+{res}nbthcld{right:Number of children ever given birth to/ fathered}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}byte{txt})
+{ralign 22:Label}: {res:nbthcld}, but {res:10} nonmissing values are not labeled
+
+{col 18}Range: [{res}1{txt},{res}10{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}10{col 51}{txt}Missing .: {res}0{txt}/{res}2,204
+{col 8}{txt}Unique mv codes: {res}1{col 50}{txt}Missing .*: {res}636{txt}/{res}2,204
+
+{txt}{ralign 23: Examples:}{col 25}{res}2{col 31}{txt}
+{ralign 23: }{col 25}{res}2{col 31}{txt}
+{ralign 23: }{col 25}{res}3{col 31}{txt}
+{ralign 23: }{col 25}{res}.a{col 31}{txt}Not applicable
+
+{com}. describe gndr pdjobev nbthcld
+
+{txt}Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:gndr           }{txt}{bind: byte    }{bind:{txt}%12.0g    }{space 1}{bind:gndr     }{bind:  }{res}{res}Gender{p_end}
+{p 0 48}{bind:pdjobev        }{txt}{bind: byte    }{bind:{txt}%14.0g    }{space 1}{bind:pdjobev  }{bind:  }{res}{res}Ever had a paid job{p_end}
+{p 0 48}{bind:nbthcld        }{txt}{bind: byte    }{bind:{txt}%14.0g    }{space 1}{bind:nbthcld  }{bind:  }{res}{res}Number of children ever given birth to/ fathered{p_end}
+{txt}
+{com}. inspect gndr pdjobev nbthcld
+
+{res}gndr:  Gender                                   {txt}Number of observations
+{hline 13}                          {hline 39}
+                                             Total      Integers   Nonintegers
+{c |}      {res}#                     {txt}Negative            {res}-             -             -
+{txt}{c |}      {res}#                     {txt}Zero                {res}-             -             -
+{txt}{c |}  {res}#   #                     {txt}Positive  {res}      2,204         2,204             -
+{txt}{c |}  {res}#   #                               {txt}{hline 11}   {hline 11}   {hline 11}
+{c |}  {res}#   #                     {txt}Total     {res}      2,204         2,204             -
+{txt}{c |}  {res}#   #                     {txt}Missing             {res}-
+{txt}{c +}{hline 22}{col 40}{hline 11}
+{res}1                     2                      2,204
+   (2 unique values)
+
+      {txt}gndr is labeled and all values are documented in the label.
+
+{res}pdjobev:  Ever had a paid job                   {txt}Number of observations
+{hline 29}          {hline 39}
+                                             Total      Integers   Nonintegers
+{c |}  {res}#                         {txt}Negative            {res}-             -             -
+{txt}{c |}  {res}#                         {txt}Zero                {res}-             -             -
+{txt}{c |}  {res}#                         {txt}Positive  {res}        948           948             -
+{txt}{c |}  {res}#                                   {txt}{hline 11}   {hline 11}   {hline 11}
+{c |}  {res}#                         {txt}Total     {res}        948           948             -
+{txt}{c |}  {res}#   .                     {txt}Missing   {res}      1,256
+{txt}{c +}{hline 22}{col 40}{hline 11}
+{res}1                     2                      2,204
+   (2 unique values)
+
+      {txt}pdjobev is labeled and all values are documented in the label.
+
+{res}nbthcld:  Number of children ever given         {txt}Number of observations
+{hline 40}{hline 39}
+                                             Total      Integers   Nonintegers
+{c |}  {res}#                         {txt}Negative            {res}-             -             -
+{txt}{c |}  {res}#                         {txt}Zero                {res}-             -             -
+{txt}{c |}  {res}#                         {txt}Positive  {res}      1,568         1,568             -
+{txt}{c |}  {res}#                                   {txt}{hline 11}   {hline 11}   {hline 11}
+{c |}  {res}#   #                     {txt}Total     {res}      1,568         1,568             -
+{txt}{c |}  {res}#   #   .   .   .         {txt}Missing   {res}        636
+{txt}{c +}{hline 22}{col 40}{hline 11}
+{res}1                    10                      2,204
+  (10 unique values)
+
+      {txt}nbthcld is labeled but 1568 values are NOT documented in the label.
+
+{com}. 
+. *frequency distribution variables for categorical variables 
+. tab gndr
+
+     {txt}Gender {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+       Male {c |}{res}        998       45.28       45.28
+{txt}     Female {c |}{res}      1,206       54.72      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      2,204      100.00
+{txt}
+{com}. tab pdjobev
+
+    {txt}Ever had a {c |}
+      paid job {c |}      Freq.     Percent        Cum.
+{hline 15}{c +}{hline 35}
+           Yes {c |}{res}        873       92.09       92.09
+{txt}            No {c |}{res}         75        7.91      100.00
+{txt}{hline 15}{c +}{hline 35}
+         Total {c |}{res}        948      100.00
+{txt}
+{com}. tab gndr pdjobev, row
+{txt}
+{c TLC}{hline 16}{c TRC}
+{c |} Key{col 18}{c |}
+{c LT}{hline 16}{c RT}
+{c |}{space 3}{it:frequency}{col 18}{c |}
+{c |}{space 1}{it:row percentage}{col 18}{c |}
+{c BLC}{hline 16}{c BRC}
+
+           {c |}  Ever had a paid job
+    Gender {c |}       Yes         No {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+      Male {c |}{res}       384         25 {txt}{c |}{res}       409 
+           {txt}{c |}{res}     93.89       6.11 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+    Female {c |}{res}       489         50 {txt}{c |}{res}       539 
+           {txt}{c |}{res}     90.72       9.28 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       873         75 {txt}{c |}{res}       948 
+           {txt}{c |}{res}     92.09       7.91 {txt}{c |}{res}    100.00 
+{txt}
+{com}. 
+. *pie chart for variable 'gender'
+. graph pie, over(gndr)  plabel(_all percent, size(1*5) ///
+> color(white)) title ("Gender") note ("Data: ESS9-2018")
+{res}{p 0 4 2}
+{txt}(note:  named style
+1 * 5 not found in class
+gsize,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. 
+. *bar graph for variable 'had a paid job'
+. graph hbar, over(pdjobev) ytitle ("Percent of Participants") ///
+> title("Had a Paid Job") blabel(ber, format(%4.1f)) note ("Data: ESS9-2018")
+{res}{p 0 4 2}
+{txt}(note:  named style
+ber not found in class
+barlabelstyle,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. 
+. *summary statistics table for quantitative variable 
+. sum nbthcld, detail
+
+      {txt}Number of children ever given birth to/ fathered
+{hline 61}
+      Percentiles      Smallest
+ 1%    {res}        1              1
+{txt} 5%    {res}        1              1
+{txt}10%    {res}        1              1       {txt}Obs         {res}      1,568
+{txt}25%    {res}        2              1       {txt}Sum of wgt. {res}      1,568
+
+{txt}50%    {res}        2                      {txt}Mean          {res} 2.289541
+                        {txt}Largest       Std. dev.     {res} 1.130465
+{txt}75%    {res}        3              8
+{txt}90%    {res}        4              9       {txt}Variance      {res} 1.277951
+{txt}95%    {res}        4             10       {txt}Skewness      {res} 1.687288
+{txt}99%    {res}        6             10       {txt}Kurtosis      {res} 8.565023
+{txt}
+{com}. 
+. *histogram
+. histogram nbthcld, normal percent title (Number of Children) ///
+> note ("Data: ESS9-2018")
+{txt}(bin={res}31{txt}, start={res}1{txt}, width={res}.29032258{txt})
+{res}{txt}
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\Kalinina_Uliana\Downloads\final_HW.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}27 Mar 2023, 23:08:19
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
